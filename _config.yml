@@ -1,0 +1,13 @@
+# Site settings
+title: AI-Generated Documentation
+description: Automatically generated documentation for taha-cmyk/Vault
+theme: minima
+github:
+  repository_url: https://github.com/taha-cmyk/Vault
+  is_project_page: true
+
+# Build settings
+markdown: kramdown
+exclude:
+  - README.md
+  - .gitignore
