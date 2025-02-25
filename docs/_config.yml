@@ -1,4 +1,8 @@
+---
 theme: jekyll-theme-hacker
 title: Kotlin/Java API Documentation
 description: Auto-generated documentation for the codebase
 show_downloads: false
+baseurl: /Vault
+url: https://taha-cmyk.github.io
+---
