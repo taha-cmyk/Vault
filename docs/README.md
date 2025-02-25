@@ -15,26 +15,16 @@ This documentation is automatically generated from the source code using AI anal
 
 - [app / src / main / java / com / taha / vault](#app-src-main-java-com-taha-vault)
 - [app / src / main / java / com / taha / vault / database](#app-src-main-java-com-taha-vault-database)
-- [app / src / main / java / com / taha / vault / di](#app-src-main-java-com-taha-vault-di)
-- [app / src / main / java / com / taha / vault / screens](#app-src-main-java-com-taha-vault-screens)
 
 ### All Documentation Files
 
 <h3 id='app-src-main-java-com-taha-vault'>app / src / main / java / com / taha / vault</h3>
 
-- [Overview](/app/src/main/java/com/taha/vault/mainactivity.md)
+- [MainActivity.kt](/app/src/main/java/com/taha/vault/mainactivity.md)
 
 <h3 id='app-src-main-java-com-taha-vault-database'>app / src / main / java / com / taha / vault / database</h3>
 
 - [setup.kt](/app/src/main/java/com/taha/vault/database/setup.md)
-
-<h3 id='app-src-main-java-com-taha-vault-di'>app / src / main / java / com / taha / vault / di</h3>
-
-- [appModule.kt](/app/src/main/java/com/taha/vault/di/appmodule.md)
-
-<h3 id='app-src-main-java-com-taha-vault-screens'>app / src / main / java / com / taha / vault / screens</h3>
-
-- [AddPasswordScreen](/app/src/main/java/com/taha/vault/screens/addpasswordscreen.md)
 
 ---
 
