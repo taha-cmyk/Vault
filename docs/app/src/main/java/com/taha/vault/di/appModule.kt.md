@@ -1,18 +1,18 @@
-# App Module Documentation
+**Overview**
+------------
 
-## Overview
+This Kotlin code defines a dependency injection (DI) module using the Koin library. The module, named `appModule`, provides instances of various classes, including `VaultDatabase`, `VaultItemDao`, `KeyValueDao`, `VaultViewModel`, and `PasswordViewModel`. These instances are used throughout the application to manage data storage and retrieval, as well as to handle business logic.
 
-The app module is a Koin module that provides dependencies for the application. It sets up the database, DAOs, and view models.
-
-## Class/Function Descriptions
+**Class/Function Descriptions**
+-----------------------------
 
 ### `appModule`
 
-**Description**: The app module is a Koin module that provides dependencies for the application.
+**Description**: The `appModule` is a Koin module that defines the dependencies for the application.
 
 **Parameters**: None
 
-**Returns**: A Koin module
+**Returns**: A Koin module instance
 
 **Throws**: None
 
@@ -20,18 +20,19 @@ The app module is a Koin module that provides dependencies for the application. 
 ```kotlin
 // Usage example
 val appModule = module {
-    // ...
+    // Define dependencies here
 }
 ```
 
-### `getDatabase(context)`
+### `getDatabase(androidContext())`
 
-**Description**: Gets the VaultDatabase instance.
+**Description**: Returns an instance of `VaultDatabase`.
 
 **Parameters**:
-- `context` (Context): The application context.
 
-**Returns**: The VaultDatabase instance.
+* `androidContext()` (Context): The Android application context
+
+**Returns**: An instance of `VaultDatabase`
 
 **Throws**: None
 
@@ -41,13 +42,13 @@ val appModule = module {
 val database = getDatabase(androidContext())
 ```
 
-### `vaultItemDao()`
+### `get<VaultDatabase>().vaultItemDao()`
 
-**Description**: Gets the VaultItemDao instance.
+**Description**: Returns an instance of `VaultItemDao`.
 
 **Parameters**: None
 
-**Returns**: The VaultItemDao instance.
+**Returns**: An instance of `VaultItemDao`
 
 **Throws**: None
 
@@ -57,13 +58,13 @@ val database = getDatabase(androidContext())
 val vaultItemDao = get<VaultDatabase>().vaultItemDao()
 ```
 
-### `keyValueDao()`
+### `get<VaultDatabase>().keyValueDao()`
 
-**Description**: Gets the KeyValueDao instance.
+**Description**: Returns an instance of `KeyValueDao`.
 
 **Parameters**: None
 
-**Returns**: The KeyValueDao instance.
+**Returns**: An instance of `KeyValueDao`
 
 **Throws**: None
 
@@ -73,151 +74,112 @@ val vaultItemDao = get<VaultDatabase>().vaultItemDao()
 val keyValueDao = get<VaultDatabase>().keyValueDao()
 ```
 
-### `VaultViewModel()`
+### `viewModelOf(::VaultViewModel)`
 
-**Description**: Creates a new instance of the VaultViewModel.
+**Description**: Returns an instance of `VaultViewModel`.
 
 **Parameters**: None
 
-**Returns**: A new instance of the VaultViewModel.
+**Returns**: An instance of `VaultViewModel`
 
 **Throws**: None
 
 **Example**:
 ```kotlin
 // Usage example
-val vaultViewModel = VaultViewModel()
+val vaultViewModel = viewModelOf(::VaultViewModel)
 ```
 
-### `PasswordViewModel()`
+### `viewModelOf(::PasswordViewModel)`
 
-**Description**: Creates a new instance of the PasswordViewModel.
+**Description**: Returns an instance of `PasswordViewModel`.
 
 **Parameters**: None
 
-**Returns**: A new instance of the PasswordViewModel.
+**Returns**: An instance of `PasswordViewModel`
 
 **Throws**: None
 
 **Example**:
 ```kotlin
 // Usage example
-val passwordViewModel = PasswordViewModel()
+val passwordViewModel = viewModelOf(::PasswordViewModel)
 ```
 
-## API Reference
+**API Reference**
+-----------------
 
 ### `appModule`
 
-**Description**: The app module is a Koin module that provides dependencies for the application.
-
-**Parameters**: None
-
-**Returns**: A Koin module
-
-**Throws**: None
-
-**Example**:
+* **Description**: The `appModule` is a Koin module that defines the dependencies for the application.
+* **Parameters**: None
+* **Returns**: A Koin module instance
+* **Throws**: None
+* **Example**:
 ```kotlin
 // Usage example
 val appModule = module {
-    // ...
+    // Define dependencies here
 }
 ```
 
-### `getDatabase(context)`
+### `getDatabase(androidContext())`
 
-**Description**: Gets the VaultDatabase instance.
-
-**Parameters**:
-- `context` (Context): The application context.
-
-**Returns**: The VaultDatabase instance.
-
-**Throws**: None
-
-**Example**:
+* **Description**: Returns an instance of `VaultDatabase`.
+* **Parameters**:
+	+ `androidContext()` (Context): The Android application context
+* **Returns**: An instance of `VaultDatabase`
+* **Throws**: None
+* **Example**:
 ```kotlin
 // Usage example
 val database = getDatabase(androidContext())
 ```
 
-### `single { getDatabase(androidContext()) }`
+### `get<VaultDatabase>().vaultItemDao()`
 
-**Description**: Provides the VaultDatabase instance as a singleton.
-
-**Parameters**: None
-
-**Returns**: The VaultDatabase instance.
-
-**Throws**: None
-
-**Example**:
+* **Description**: Returns an instance of `VaultItemDao`.
+* **Parameters**: None
+* **Returns**: An instance of `VaultItemDao`
+* **Throws**: None
+* **Example**:
 ```kotlin
 // Usage example
-single { getDatabase(androidContext()) }
+val vaultItemDao = get<VaultDatabase>().vaultItemDao()
 ```
 
-### `single { get<VaultDatabase>().vaultItemDao() }`
+### `get<VaultDatabase>().keyValueDao()`
 
-**Description**: Provides the VaultItemDao instance as a singleton.
-
-**Parameters**: None
-
-**Returns**: The VaultItemDao instance.
-
-**Throws**: None
-
-**Example**:
+* **Description**: Returns an instance of `KeyValueDao`.
+* **Parameters**: None
+* **Returns**: An instance of `KeyValueDao`
+* **Throws**: None
+* **Example**:
 ```kotlin
 // Usage example
-single { get<VaultDatabase>().vaultItemDao() }
-```
-
-### `single { get<VaultDatabase>().keyValueDao() }`
-
-**Description**: Provides the KeyValueDao instance as a singleton.
-
-**Parameters**: None
-
-**Returns**: The KeyValueDao instance.
-
-**Throws**: None
-
-**Example**:
-```kotlin
-// Usage example
-single { get<VaultDatabase>().keyValueDao() }
+val keyValueDao = get<VaultDatabase>().keyValueDao()
 ```
 
 ### `viewModelOf(::VaultViewModel)`
 
-**Description**: Provides the VaultViewModel instance as a view model.
-
-**Parameters**: None
-
-**Returns**: The VaultViewModel instance.
-
-**Throws**: None
-
-**Example**:
+* **Description**: Returns an instance of `VaultViewModel`.
+* **Parameters**: None
+* **Returns**: An instance of `VaultViewModel`
+* **Throws**: None
+* **Example**:
 ```kotlin
 // Usage example
-viewModelOf(::VaultViewModel)
+val vaultViewModel = viewModelOf(::VaultViewModel)
 ```
 
 ### `viewModelOf(::PasswordViewModel)`
 
-**Description**: Provides the PasswordViewModel instance as a view model.
-
-**Parameters**: None
-
-**Returns**: The PasswordViewModel instance.
-
-**Throws**: None
-
-**Example**:
+* **Description**: Returns an instance of `PasswordViewModel`.
+* **Parameters**: None
+* **Returns**: An instance of `PasswordViewModel`
+* **Throws**: None
+* **Example**:
 ```kotlin
 // Usage example
-viewModelOf(::PasswordViewModel)
+val passwordViewModel = viewModelOf(::PasswordViewModel)
 ```
