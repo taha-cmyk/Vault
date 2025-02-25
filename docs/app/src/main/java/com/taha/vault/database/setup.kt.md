@@ -1,96 +1,81 @@
-Vault Database Documentation
-==========================
+Vault Database Setup
+=====================
 
 Overview
 --------
 
-The Vault Database is a Room-based database designed to store and manage vault items and key-value pairs. It provides a singleton instance of the database, ensuring that only one instance is created throughout the application's lifecycle.
+This Kotlin code is used to set up a Room database for an Android application. The database, named "vault_database", contains two entities: `VaultItem` and `KeyValueEntity`. The `VaultDatabase` class provides a singleton instance of the database and abstract methods to access the `VaultItemDao` and `KeyValueDao` data access objects.
 
 ### `VaultDatabase`
 
-**Description**: The main database class that extends RoomDatabase. It provides abstract methods for accessing the DAOs (Data Access Objects) for vault items and key-value pairs.
+**Description**: The `VaultDatabase` class is an abstract class that extends `RoomDatabase`. It provides a singleton instance of the database and abstract methods to access the `VaultItemDao` and `KeyValueDao` data access objects.
 
 **Properties**:
 
-- `vaultItemDao`: An abstract method that returns a VaultItemDao instance.
-- `keyValueDao`: An abstract method that returns a KeyValueDao instance.
+- `INSTANCE` (VaultDatabase?): A volatile private variable that holds the singleton instance of the `VaultDatabase`.
 
-### `VaultDatabase.getDatabase(context)`
+### `getDatabase(context: Context)`
 
-**Description**: A companion object method that returns the singleton instance of the VaultDatabase. If the instance is not created, it builds a new instance using Room's database builder.
+**Description**: Returns the singleton instance of the `VaultDatabase`. If the instance does not exist, it creates a new instance using the `Room.databaseBuilder` method.
 
 **Parameters**:
 
-- `context` (Context): The application context.
+- `context` (Context): The application context used to create the database instance.
 
-**Returns**: The singleton instance of VaultDatabase.
+**Returns**: The singleton instance of the `VaultDatabase` (VaultDatabase).
 
 **Example**:
 ```kotlin
 val database = VaultDatabase.getDatabase(applicationContext)
+```
+
+### `vaultItemDao()`
+
+**Description**: Returns an instance of the `VaultItemDao` data access object.
+
+**Returns**: An instance of the `VaultItemDao` (VaultItemDao).
+
+**Example**:
+```kotlin
 val vaultItemDao = database.vaultItemDao()
+```
+
+### `keyValueDao()`
+
+**Description**: Returns an instance of the `KeyValueDao` data access object.
+
+**Returns**: An instance of the `KeyValueDao` (KeyValueDao).
+
+**Example**:
+```kotlin
 val keyValueDao = database.keyValueDao()
 ```
 
 API Reference
 -------------
 
-### `VaultDatabase.getDatabase(context)`
-
-**Description**: Returns the singleton instance of the VaultDatabase.
-
-**Parameters**:
-
-- `context` (Context): The application context.
-
-**Returns**: The singleton instance of VaultDatabase.
-
-**Throws**: None
-
-**Example**:
-```kotlin
-val database = VaultDatabase.getDatabase(applicationContext)
-```
-
-### `VaultDatabase.vaultItemDao()`
-
-**Description**: Returns a VaultItemDao instance for accessing vault items.
-
-**Parameters**: None
-
-**Returns**: A VaultItemDao instance.
-
-**Throws**: None
-
-**Example**:
-```kotlin
-val vaultItemDao = database.vaultItemDao()
-```
-
-### `VaultDatabase.keyValueDao()`
-
-**Description**: Returns a KeyValueDao instance for accessing key-value pairs.
-
-**Parameters**: None
-
-**Returns**: A KeyValueDao instance.
-
-**Throws**: None
-
-**Example**:
-```kotlin
-val keyValueDao = database.keyValueDao()
-```
-
 ### `VaultDatabase`
 
-**Description**: The main database class that extends RoomDatabase.
-
-**Properties**:
-
-- `INSTANCE` (VaultDatabase?): The singleton instance of the database.
-
-**Example**:
-```kotlin
+*   `getDatabase(context: Context)`: Returns the singleton instance of the `VaultDatabase`.
+    *   **Description**: Returns the singleton instance of the `VaultDatabase`. If the instance does not exist, it creates a new instance using the `Room.databaseBuilder` method.
+    *   **Parameters**:
+        *   `context` (Context): The application context used to create the database instance.
+    *   **Returns**: The singleton instance of the `VaultDatabase` (VaultDatabase).
+    *   **Example**:
+    ```kotlin
 val database = VaultDatabase.getDatabase(applicationContext)
+```
+*   `vaultItemDao()`: Returns an instance of the `VaultItemDao` data access object.
+    *   **Description**: Returns an instance of the `VaultItemDao` data access object.
+    *   **Returns**: An instance of the `VaultItemDao` (VaultItemDao).
+    *   **Example**:
+    ```kotlin
+val vaultItemDao = database.vaultItemDao()
+```
+*   `keyValueDao()`: Returns an instance of the `KeyValueDao` data access object.
+    *   **Description**: Returns an instance of the `KeyValueDao` data access object.
+    *   **Returns**: An instance of the `KeyValueDao` (KeyValueDao).
+    *   **Example**:
+    ```kotlin
+val keyValueDao = database.keyValueDao()
 ```
