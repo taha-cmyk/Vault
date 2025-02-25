@@ -1,137 +1,53 @@
 ---
 layout: default
-title: "MainActivity.kt"
+title: "Overview"
 source_file: "app/src/main/java/com/taha/vault/MainActivity.kt"
 ---
 
-**Vault Documentation**
-======================
+# Overview
+The provided Kotlin code is for an Android application's main activity, specifically designed to work with the Jetpack Compose framework and the Koin dependency injection library. The `MainActivity` class sets up the application's theme, initializes Koin, and defines the main navigation host for the application.
 
-**Overview**
-------------
-
-The provided Kotlin code is for the `MainActivity` class, which is the entry point of an Android application. The application uses the Jetpack Compose framework for building the user interface and Koin for dependency injection. The `MainActivity` class sets up the application's theme, navigation, and dependency injection.
-
-**Class Descriptions**
---------------------
+## Class Descriptions
 
 ### `MainActivity`
 
-**Description**: The main entry point of the Android application.
+**Description**: The main activity of the application, responsible for setting up the application's theme, initializing Koin, and defining the main navigation host.
 
-**Parameters**: None
+**Parameters**:
+- None
 
-**Returns**: None
-
-**Throws**: None
-
-**Example**:
-```kotlin
-class MyActivity : ComponentActivity() {
-    // ...
-}
-```
+**Returns**:
+- None
 
 ### `GreetingPreview`
 
-**Description**: A preview composable function to showcase the application's theme.
-
-**Parameters**: None
-
-**Returns**: A composable function that displays the application's theme.
-
-**Throws**: None
-
-**Example**:
-```kotlin
-@Preview(showBackground = true)
-@Composable
-fun MyPreview() {
-    VaultTheme {
-        // ...
-    }
-}
-```
-
-**Function Descriptions**
-----------------------
-
-### `onCreate(savedInstanceState: Bundle?)`
-
-**Description**: Called when the activity is created.
+**Description**: A preview composable function used to preview the application's theme.
 
 **Parameters**:
-- `savedInstanceState` (Bundle?): The saved instance state of the activity.
+- None
 
-**Returns**: None
+**Returns**:
+- A composable preview of the application's theme.
 
-**Throws**: None
-
-**Example**:
-```kotlin
-override fun onCreate(savedInstanceState: Bundle?) {
-    super.onCreate(savedInstanceState)
-    // ...
-}
-```
-
-### `startKoin(block: KoinApplication.() -> Unit)`
-
-**Description**: Starts the Koin application.
-
-**Parameters**:
-- `block` (KoinApplication.() -> Unit): A block of code to configure the Koin application.
-
-**Returns**: None
-
-**Throws**: None
-
-**Example**:
-```kotlin
-startKoin {
-    androidContext(this@MainActivity)
-    modules(appModule)
-}
-```
-
-### `setContent(content: @Composable () -> Unit)`
-
-**Description**: Sets the content of the activity.
-
-**Parameters**:
-- `content` (@Composable () -> Unit): A composable function that defines the content of the activity.
-
-**Returns**: None
-
-**Throws**: None
-
-**Example**:
-```kotlin
-setContent {
-    VaultTheme {
-        // ...
-    }
-}
-```
-
-**API Reference**
------------------
+## API Reference
 
 ### `MainActivity()`
 
-**Description**: The main entry point of the Android application.
+**Description**: The main activity of the application.
 
-**Parameters**: None
+**Parameters**:
+- None
 
-**Returns**: None
+**Returns**:
+- None
 
-**Throws**: None
+**Throws**:
+- None
 
 **Example**:
 ```kotlin
-class MyActivity : ComponentActivity() {
-    // ...
-}
+// Create a new instance of MainActivity
+val mainActivity = MainActivity()
 ```
 
 ### `onCreate(savedInstanceState: Bundle?)`
@@ -141,76 +57,97 @@ class MyActivity : ComponentActivity() {
 **Parameters**:
 - `savedInstanceState` (Bundle?): The saved instance state of the activity.
 
-**Returns**: None
+**Returns**:
+- None
 
-**Throws**: None
-
-**Example**:
-```kotlin
-override fun onCreate(savedInstanceState: Bundle?) {
-    super.onCreate(savedInstanceState)
-    // ...
-}
-```
-
-### `startKoin(block: KoinApplication.() -> Unit)`
-
-**Description**: Starts the Koin application.
-
-**Parameters**:
-- `block` (KoinApplication.() -> Unit): A block of code to configure the Koin application.
-
-**Returns**: None
-
-**Throws**: None
+**Throws**:
+- None
 
 **Example**:
 ```kotlin
-startKoin {
-    androidContext(this@MainActivity)
-    modules(appModule)
-}
-```
-
-### `setContent(content: @Composable () -> Unit)`
-
-**Description**: Sets the content of the activity.
-
-**Parameters**:
-- `content` (@Composable () -> Unit): A composable function that defines the content of the activity.
-
-**Returns**: None
-
-**Throws**: None
-
-**Example**:
-```kotlin
-setContent {
-    VaultTheme {
-        // ...
+// Override onCreate in your activity
+class MyActivity : AppCompatActivity() {
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        // Initialize your activity here
     }
 }
 ```
 
 ### `GreetingPreview()`
 
-**Description**: A preview composable function to showcase the application's theme.
+**Description**: A preview composable function used to preview the application's theme.
 
-**Parameters**: None
+**Parameters**:
+- None
 
-**Returns**: A composable function that displays the application's theme.
+**Returns**:
+- A composable preview of the application's theme.
 
-**Throws**: None
+**Throws**:
+- None
 
 **Example**:
 ```kotlin
+// Use GreetingPreview in your code
 @Preview(showBackground = true)
 @Composable
 fun MyPreview() {
-    VaultTheme {
-        // ...
+    GreetingPreview()
+}
+```
+
+### `startKoin(block: KoinApplication.() -> Unit)`
+
+**Description**: Starts the Koin application.
+
+**Parameters**:
+- `block` (KoinApplication.() -> Unit): A block of code to execute on the Koin application.
+
+**Returns**:
+- None
+
+**Throws**:
+- None
+
+**Example**:
+```kotlin
+// Start Koin in your activity
+startKoin {
+    androidContext(this@MyActivity)
+    modules(appModule)
+}
+```
+
+## Usage Examples
+
+### Starting Koin and setting up the application's theme
+
+```kotlin
+class MyActivity : ComponentActivity() {
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        startKoin {
+            androidContext(this@MyActivity)
+            modules(appModule)
+        }
+        setContent {
+            VaultTheme {
+                // Your composable content here
+            }
+        }
     }
 }
 ```
 
-You can view this documentation on GitHub Pages using a modern theme, such as the [Just the Docs](https://github.com/pmarsceill/just-the-docs) theme.
+### Using the `GreetingPreview` composable function
+
+```kotlin
+@Preview(showBackground = true)
+@Composable
+fun MyPreview() {
+    GreetingPreview()
+}
+```
+
+Note: The `GreetingPreview` function is currently empty and does not display any content. You will need to add composable content to this function to see a preview.
