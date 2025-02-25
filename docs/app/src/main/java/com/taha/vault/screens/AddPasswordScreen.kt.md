@@ -1,20 +1,21 @@
 Add Password Screen Documentation
 ================================
 
-Overview
---------
+### Overview
 
-The `AddPasswordScreen` composable function is responsible for rendering the user interface for adding a new password. It utilizes the `PasswordScreen` composable and interacts with the `PasswordViewModel` to store the new password.
+The `AddPasswordScreen` is a Jetpack Compose screen that allows users to add a new password. It uses the `PasswordScreen` composable to handle the password input and the `PasswordViewModel` to store the password.
+
+### Class Description
 
 ### `AddPasswordScreen(navHostController, passwordViewModel)`
 
-**Description**: Composable function that displays the add password screen and handles password storage.
+**Description**: A Jetpack Compose screen that allows users to add a new password.
 
 **Parameters**:
-- `navHostController` (NavHostController): The navigation host controller used to navigate between screens.
-- `passwordViewModel` (PasswordViewModel): The view model responsible for password storage. Defaults to a Koin-provided instance if not specified.
+- `navHostController` (NavHostController): The navigation host controller used to navigate to other screens.
+- `passwordViewModel` (PasswordViewModel): The view model used to store the password. Defaults to a `koinViewModel` instance if not provided.
 
-**Returns**: A composable function that displays the add password screen.
+**Returns**: A composable screen that allows users to add a new password.
 
 **Throws**: None
 
@@ -23,7 +24,7 @@ The `AddPasswordScreen` composable function is responsible for rendering the use
 // Usage example
 @Composable
 fun MyComposable(navHostController: NavHostController) {
-    AddPasswordScreen(navHostController = navHostController)
+    AddPasswordScreen(navHostController)
 }
 ```
 
@@ -32,13 +33,13 @@ API Reference
 
 ### `AddPasswordScreen(navHostController, passwordViewModel)`
 
-**Description**: Composable function that displays the add password screen and handles password storage.
+**Description**: A Jetpack Compose screen that allows users to add a new password.
 
 **Parameters**:
-- `navHostController` (NavHostController): The navigation host controller used to navigate between screens.
-- `passwordViewModel` (PasswordViewModel): The view model responsible for password storage. Defaults to a Koin-provided instance if not specified.
+- `navHostController` (NavHostController): The navigation host controller used to navigate to other screens.
+- `passwordViewModel` (PasswordViewModel): The view model used to store the password. Defaults to a `koinViewModel` instance if not provided.
 
-**Returns**: A composable function that displays the add password screen.
+**Returns**: A composable screen that allows users to add a new password.
 
 **Throws**: None
 
@@ -47,26 +48,67 @@ API Reference
 // Usage example
 @Composable
 fun MyComposable(navHostController: NavHostController) {
-    AddPasswordScreen(navHostController = navHostController)
+    AddPasswordScreen(navHostController)
 }
 ```
 
-PasswordViewModel Reference
----------------------------
+### `PasswordScreen(onPasswordSet)`
 
-For a detailed reference of the `PasswordViewModel`, please refer to its dedicated documentation.
+**Description**: A Jetpack Compose screen that handles password input.
 
-PasswordScreen Reference
--------------------------
+**Parameters**:
+- `onPasswordSet` (Function1<String, Unit>): A callback function that is called when the password is set.
 
-For a detailed reference of the `PasswordScreen` composable, please refer to its dedicated documentation.
+**Returns**: A composable screen that handles password input.
 
-NavHostController Reference
----------------------------
+**Throws**: None
 
-For a detailed reference of the `NavHostController`, please refer to the official Android documentation.
+**Example**:
+```kotlin
+// Usage example
+@Composable
+fun MyComposable() {
+    PasswordScreen(onPasswordSet = { newPassword ->
+        // Handle the new password
+    })
+}
+```
 
-KoinViewModel Reference
--------------------------
+### `PasswordViewModel.setPassword(password)`
 
-For a detailed reference of the `koinViewModel`, please refer to the official Koin documentation.
+**Description**: Sets the password in the view model.
+
+**Parameters**:
+- `password` (String): The password to set.
+
+**Returns**: None
+
+**Throws**: None
+
+**Example**:
+```kotlin
+// Usage example
+@Composable
+fun MyComposable(passwordViewModel: PasswordViewModel) {
+    passwordViewModel.setPassword("mysecretpassword")
+}
+```
+
+### `koinViewModel()`
+
+**Description**: Returns a shared instance of the view model.
+
+**Parameters**: None
+
+**Returns**: A shared instance of the view model.
+
+**Throws**: None
+
+**Example**:
+```kotlin
+// Usage example
+@Composable
+fun MyComposable() {
+    val passwordViewModel = koinViewModel<PasswordViewModel>()
+}
+```
