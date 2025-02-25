@@ -1,28 +1,4 @@
-# Jekyll configuration for GitHub Pages
-remote_theme: pages-themes/cayman@v0.2.0
-plugins:
-- jekyll-remote-theme
-- jekyll-seo-tag
-
-# Site settings
+theme: jekyll-theme-hacker
 title: Kotlin/Java API Documentation
 description: Auto-generated documentation for the codebase
 show_downloads: false
-github:
-  is_project_page: true
-
-# Jekyll settings
-markdown: kramdown
-kramdown:
-  input: GFM
-  syntax_highlighter: rouge
-
-# Exclude files from processing
-exclude:
-  - Gemfile
-  - Gemfile.lock
-  - node_modules
-  - vendor/bundle/
-  - vendor/cache/
-  - vendor/gems/
-  - vendor/ruby/
