@@ -1,0 +1,26 @@
+# Navigation data for Jekyll
+sections:
+  - id: app-src-main-java-com-taha-vault
+    title: "app/src/main/java/com/taha/vault"
+    items:
+      - title: "Overview"
+        url: /app/src/main/java/com/taha/vault/mainactivity.md
+        id: mainactivity
+  - id: app-src-main-java-com-taha-vault-database
+    title: "app/src/main/java/com/taha/vault/database"
+    items:
+      - title: "setup.kt"
+        url: /app/src/main/java/com/taha/vault/database/setup.md
+        id: setup
+  - id: app-src-main-java-com-taha-vault-di
+    title: "app/src/main/java/com/taha/vault/di"
+    items:
+      - title: "appModule.kt"
+        url: /app/src/main/java/com/taha/vault/di/appmodule.md
+        id: appmodule
+  - id: app-src-main-java-com-taha-vault-screens
+    title: "app/src/main/java/com/taha/vault/screens"
+    items:
+      - title: "AddPasswordScreen"
+        url: /app/src/main/java/com/taha/vault/screens/addpasswordscreen.md
+        id: addpasswordscreen
