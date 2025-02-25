@@ -5,44 +5,26 @@ source_file: "app/src/main/java/com/taha/vault/MainActivity.kt"
 ---
 
 # Overview
-The provided Kotlin code is for an Android application's main activity, specifically designed to work with the Jetpack Compose framework and the Koin dependency injection library. The `MainActivity` class sets up the application's theme, initializes Koin, and defines the main navigation host for the application.
+
+The provided Kotlin code is for an Android application's main activity, specifically designed to work with the Jetpack Compose UI framework and the Koin dependency injection library. The `MainActivity` class sets up the application's theme, initializes Koin, and defines the main navigation host for the app.
 
 ## Class Descriptions
 
 ### `MainActivity`
 
-**Description**: The main activity of the application, responsible for setting up the application's theme, initializing Koin, and defining the main navigation host.
+**Description**: The main activity of the Android application, responsible for setting up the UI theme, initializing Koin, and defining the main navigation host.
 
-**Parameters**:
-- None
-
-**Returns**:
-- None
-
-### `GreetingPreview`
-
-**Description**: A preview composable function used to preview the application's theme.
-
-**Parameters**:
-- None
-
-**Returns**:
-- A composable preview of the application's theme.
-
-## API Reference
+**API Reference**
 
 ### `MainActivity()`
 
-**Description**: The main activity of the application.
+**Description**: The constructor for the `MainActivity` class.
 
-**Parameters**:
-- None
+**Parameters**: None
 
-**Returns**:
-- None
+**Returns**: An instance of `MainActivity`
 
-**Throws**:
-- None
+**Throws**: None
 
 **Example**:
 ```kotlin
@@ -52,44 +34,48 @@ val mainActivity = MainActivity()
 
 ### `onCreate(savedInstanceState: Bundle?)`
 
-**Description**: Called when the activity is created.
+**Description**: Called when the activity is created, sets up the UI theme, initializes Koin, and defines the main navigation host.
 
 **Parameters**:
-- `savedInstanceState` (Bundle?): The saved instance state of the activity.
 
-**Returns**:
-- None
+- `savedInstanceState` (Bundle?): The saved instance state of the activity, or null if there is no saved state.
 
-**Throws**:
-- None
+**Returns**: None
+
+**Throws**: None
 
 **Example**:
 ```kotlin
-// Override onCreate in your activity
-class MyActivity : AppCompatActivity() {
+// Override the onCreate method in a subclass
+class MyActivity : MainActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        // Initialize your activity here
+        // Additional initialization code here
     }
 }
 ```
 
+## Function Descriptions
+
 ### `GreetingPreview()`
 
-**Description**: A preview composable function used to preview the application's theme.
+**Description**: A preview function for the application's theme.
 
-**Parameters**:
-- None
+**API Reference**
 
-**Returns**:
-- A composable preview of the application's theme.
+### `GreetingPreview()`
 
-**Throws**:
-- None
+**Description**: A preview function for the application's theme.
+
+**Parameters**: None
+
+**Returns**: A preview of the application's theme.
+
+**Throws**: None
 
 **Example**:
 ```kotlin
-// Use GreetingPreview in your code
+// Use the GreetingPreview function to preview the application's theme
 @Preview(showBackground = true)
 @Composable
 fun MyPreview() {
@@ -97,57 +83,81 @@ fun MyPreview() {
 }
 ```
 
-### `startKoin(block: KoinApplication.() -> Unit)`
+## API Reference
 
-**Description**: Starts the Koin application.
+### `startKoin(init: KoinAppDeclaration)`
+
+**Description**: Initializes the Koin dependency injection library.
 
 **Parameters**:
-- `block` (KoinApplication.() -> Unit): A block of code to execute on the Koin application.
 
-**Returns**:
-- None
+- `init` (KoinAppDeclaration): The initialization declaration for Koin.
 
-**Throws**:
-- None
+**Returns**: None
+
+**Throws**: None
 
 **Example**:
 ```kotlin
-// Start Koin in your activity
+// Initialize Koin
 startKoin {
-    androidContext(this@MyActivity)
+    androidContext(this@MainActivity)
     modules(appModule)
 }
 ```
 
-## Usage Examples
+### `KoinAndroidContext(content: @Composable () -> Unit)`
 
-### Starting Koin and setting up the application's theme
+**Description**: A composable function that provides a Koin Android context.
 
+**Parameters**:
+
+- `content` (@Composable () -> Unit): The composable content to be displayed.
+
+**Returns**: None
+
+**Throws**: None
+
+**Example**:
 ```kotlin
-class MyActivity : ComponentActivity() {
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        startKoin {
-            androidContext(this@MyActivity)
-            modules(appModule)
-        }
-        setContent {
-            VaultTheme {
-                // Your composable content here
-            }
-        }
-    }
+// Use the KoinAndroidContext composable function
+KoinAndroidContext {
+    AppNavHost()
 }
 ```
 
-### Using the `GreetingPreview` composable function
+### `VaultTheme(content: @Composable () -> Unit)`
 
+**Description**: A composable function that applies the application's theme.
+
+**Parameters**:
+
+- `content` (@Composable () -> Unit): The composable content to be displayed.
+
+**Returns**: None
+
+**Throws**: None
+
+**Example**:
 ```kotlin
-@Preview(showBackground = true)
-@Composable
-fun MyPreview() {
-    GreetingPreview()
+// Use the VaultTheme composable function
+VaultTheme {
+    AppNavHost()
 }
 ```
 
-Note: The `GreetingPreview` function is currently empty and does not display any content. You will need to add composable content to this function to see a preview.
+### `AppNavHost()`
+
+**Description**: A composable function that defines the main navigation host for the application.
+
+**Parameters**: None
+
+**Returns**: None
+
+**Throws**: None
+
+**Example**:
+```kotlin
+// Use the AppNavHost composable function
+AppNavHost()
+```
