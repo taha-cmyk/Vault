@@ -4,114 +4,74 @@ Vault Database Documentation
 Overview
 --------
 
-The `VaultDatabase` class is a RoomDatabase implementation that provides a centralized database for storing and retrieving vault items and key-value pairs. It uses Room persistence library to manage the database and provides Data Access Objects (DAOs) for interacting with the database.
+The `VaultDatabase` class is a RoomDatabase implementation that provides a centralized point for accessing and managing data in the application. It uses Room persistence library to store and retrieve data, providing a simple and efficient way to interact with the database.
+
+The database contains two entities: `VaultItem` and `KeyValueEntity`, which are accessed through their respective DAOs (Data Access Objects).
 
 ### Class Description
 
 #### `VaultDatabase`
 
-**Description**: An abstract class that extends RoomDatabase and provides DAOs for vault items and key-value pairs.
+`VaultDatabase` is an abstract class that extends `RoomDatabase`. It provides a singleton instance of the database, which can be accessed through the `getDatabase` method.
 
-**DAOs**:
-
-- `vaultItemDao()`: Returns a DAO for vault items.
-- `keyValueDao()`: Returns a DAO for key-value pairs.
-
-### Companion Object
-
-The companion object provides a method to get an instance of the `VaultDatabase` class.
-
-#### `getDatabase(context)`
-
-**Description**: Returns an instance of the `VaultDatabase` class. If an instance already exists, it returns the existing instance. Otherwise, it creates a new instance using the provided context.
-
-**Parameters**:
-
-- `context` (Context): The application context.
-
-**Returns**: An instance of the `VaultDatabase` class.
-
-**Example**:
-```kotlin
-val database = VaultDatabase.getDatabase(applicationContext)
-```
-
-API Reference
--------------
+### API Reference
 
 ### `VaultDatabase`
 
-**Description**: An abstract class that extends RoomDatabase and provides DAOs for vault items and key-value pairs.
+**Description**: A RoomDatabase implementation that provides access to the application's data.
 
-**DAOs**:
+**Methods**:
 
-- `vaultItemDao()`: Returns a DAO for vault items.
-- `keyValueDao()`: Returns a DAO for key-value pairs.
+#### `vaultItemDao()`
 
-### `getDatabase(context)`
+**Description**: Returns a `VaultItemDao` instance for accessing `VaultItem` data.
 
-**Description**: Returns an instance of the `VaultDatabase` class. If an instance already exists, it returns the existing instance. Otherwise, it creates a new instance using the provided context.
+**Returns**: `VaultItemDao` instance.
+
+**Example**:
+```kotlin
+val vaultItemDao = VaultDatabase.getDatabase(context).vaultItemDao()
+```
+
+#### `keyValueDao()`
+
+**Description**: Returns a `KeyValueDao` instance for accessing `KeyValueEntity` data.
+
+**Returns**: `KeyValueDao` instance.
+
+**Example**:
+```kotlin
+val keyValueDao = VaultDatabase.getDatabase(context).keyValueDao()
+```
+
+#### `getDatabase(context: Context)`
+
+**Description**: Returns a singleton instance of the `VaultDatabase`.
 
 **Parameters**:
 
-- `context` (Context): The application context.
+* `context` (Context): The application context.
 
-**Returns**: An instance of the `VaultDatabase` class.
-
-**Throws**: None
+**Returns**: `VaultDatabase` instance.
 
 **Example**:
 ```kotlin
-val database = VaultDatabase.getDatabase(applicationContext)
+val database = VaultDatabase.getDatabase(context)
 ```
 
-### `vaultItemDao()`
+### Usage Examples
 
-**Description**: Returns a DAO for vault items.
+To use the `VaultDatabase`, first obtain an instance of the database using the `getDatabase` method:
+```kotlin
+val database = VaultDatabase.getDatabase(context)
+```
 
-**Parameters**: None
-
-**Returns**: A `VaultItemDao` instance.
-
-**Throws**: None
-
-**Example**:
+Then, you can access the DAOs to perform CRUD operations:
 ```kotlin
 val vaultItemDao = database.vaultItemDao()
-```
-
-### `keyValueDao()`
-
-**Description**: Returns a DAO for key-value pairs.
-
-**Parameters**: None
-
-**Returns**: A `KeyValueDao` instance.
-
-**Throws**: None
-
-**Example**:
-```kotlin
 val keyValueDao = database.keyValueDao()
+
+// Perform CRUD operations using the DAOs
 ```
 
-Usage Examples
--------------
-
-### Getting an instance of the database
-
-```kotlin
-val database = VaultDatabase.getDatabase(applicationContext)
-```
-
-### Getting a DAO for vault items
-
-```kotlin
-val vaultItemDao = database.vaultItemDao()
-```
-
-### Getting a DAO for key-value pairs
-
-```kotlin
-val keyValueDao = database.keyValueDao()
-```
+Note: Make sure to call `getDatabase` on the application's main thread or a thread that has a Looper attached. Room will throw an exception if the database is accessed on a background thread without a Looper.
