@@ -1,0 +1,13 @@
+<!-- Navigation sidebar generated from _data/navigation.yml -->
+<nav class="site-nav">
+    {% for section in site.data.navigation.sections %}
+    <div class="nav-section">
+        <div class="nav-section-title">{{ section.title }}</div>
+        <ul class="nav-list">
+            {% for item in section.items %}
+            <li><a href="{{ item.url | relative_url }}">{{ item.title }}</a></li>
+            {% endfor %}
+        </ul>
+    </div>
+    {% endfor %}
+</nav>
